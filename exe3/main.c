@@ -44,10 +44,6 @@ void process_task(void *p) {
             int avg = sum / count;
             
             printf("%d\n", avg);
-            // deixar esse delay!
-            vTaskDelay(pdMS_TO_TICKS(50));
-
-
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
