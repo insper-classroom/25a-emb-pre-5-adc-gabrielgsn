@@ -32,18 +32,19 @@ void process_task(void *p) {
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
             // implementar filtro aqui!
+
             janela[idx] = data;
             idx = (idx + 1) % 5;
-            if (count < 5){
-                count++;
-            }
-            int sum = 0;
-            for (int i = 0; i < count; i++){
-                sum += janela[i];
-            }
-            int avg = sum / count;
+            count++;
             
-            printf("%d\n", avg);
+            if (count >= 5) {
+                int sum = 0;
+                for (int i = 0; i < 5; i++) {
+                    sum += janela[(idx - 1 - i + 5) % 5];
+                }
+                int average = sum / 5;
+                printf("%d\n", average);
+            }
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
